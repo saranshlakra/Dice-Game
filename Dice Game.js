@@ -1,4 +1,4 @@
-var dice, score, roundScore, currentPlayer, maxValue, gamePlaying;
+var dice, score, roundScore, currentPlayer, maxValue;
 
 score = [0, 0];
 roundScore = 0;
@@ -65,7 +65,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     document.querySelector('#score-' + currentPlayer).textContent = score[currentPlayer];
 
 
-    if (score[currentPlayer] >= 20) {
+    if (score[currentPlayer] >= maxValue) {
         //  console.log('winner');
         document.querySelector('#name-' + currentPlayer).textContent = 'Winner!';
         document.querySelector('.dice1').style.display = 'none';
@@ -85,6 +85,15 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     }
 });
 
+document.querySelector('.btn-set-value').addEventListener('click', function() {
+    maxValue = document.querySelector('.input-value').value;
+    alert('Start game for: ' + maxValue + ' points.');
+    document.querySelector('.input-value').style.display = 'none';
+    document.querySelector('.btn-set-value').style.display = 'none';
+    //return maxValue;
+});
+
+
 function init() {
     score = [0, 0];
     roundScore = 0;
@@ -99,6 +108,8 @@ function init() {
     document.querySelector('.btn-hold').style.display = 'block';
     document.querySelector('.panel0').classList.add('active');
     document.querySelector('.panel1').classList.remove('active');
+    document.querySelector('.input-value').style.display = 'block';
+    document.querySelector('.btn-set-value').style.display = 'block';
     maxValue = undefined;
 
 };
